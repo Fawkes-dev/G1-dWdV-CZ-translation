@@ -1,6 +1,7 @@
 # G1 Die Welt der Verurteilten CZ translation v0.2
 
 Mod Autor: [Issues](https://forum.worldofplayers.de/forum/members/67037-Issues)
+
 WoG Forum: [Release-Gothic-Welt-der-Verurteilten-v1-03-6](https://forum.worldofplayers.de/forum/threads/1332744-Release-Gothic-Welt-der-Verurteilten-v1-03-6)
 
 CZ Translation v0.1: Fawkes & Kaiser
@@ -11,8 +12,8 @@ We have fixed some bugs along the way during translation, some original G1 bugs,
 
 ChangeLog:
 
-###v0.2 2020-12-13
-####Fixed translation:
+### v0.2 2020-12-13
+#### Fixed translation:
 ```c
 \CONTENT\Story\MISSIONS\DIA_GUR_1203_BaalTondral.d
 
@@ -50,8 +51,8 @@ ChangeLog:
 	};
 ```
 
-###v0.1 2020-12-06
-####Bugfixes - original G1:
+### v0.1 2020-12-06
+#### Bugfixes - original G1:
 ```c
 \CONTENT\Story\ZS\ZS_Smalltalk.d
 	func void ZS_Smalltalk_Loop(){
@@ -201,10 +202,9 @@ ChangeLog:
 	};
 ```
 
-####Bugfixes - mod:
+#### Bugfixes - mod:
 
 ```c
-
 \CONTENT\Story\MISSIONS\DIA_org_5060_bandit.d
 	func void org_5060_bandit_beated_info(){
 		//Added Npc_HasItems to check if hero has item before removing. Not a big deal.
@@ -217,7 +217,6 @@ ChangeLog:
 			Npc_RemoveInvItem(hero,ItWr_Fire_Letter_02);
 		};
 	};
-
 
 \CONTENT\Story\MISSIONS\DIA_PC_Thief.d
 	func void info_diego_münzenabgeben_info(){
@@ -427,7 +426,6 @@ ChangeLog:
 		//else if(zufallsbelohnung >= 10){
 		};
 	};
-
 
 \CONTENT\Story\MISSIONS\DIA_GRD_267_Gardist.d
 	//Several issues
