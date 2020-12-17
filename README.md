@@ -475,7 +475,6 @@ ChangeLog:
 		};
 	};
 
-
 \CONTENT\_misk_\potionalchemy_s1.d
 	
 	func void pc_heal3_info(){

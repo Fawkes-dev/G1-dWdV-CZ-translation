@@ -1,0 +1,381 @@
+CZ translation changeLog v0.1
+2020-12-06
+
+Fawkes: Opravil som len to na co som narazil pri preklade, pravdepodobne su v kode dalsie chyby.
+
+Bugfixes:
+
+//Najcastejsie standardny G1 Bug - presuva sa item k hracovi ale nevytvara sa. Technicky nevadi, lebo B_GiveInvItems ho vytvori, ale je to prasacina :)
+
+\CONTENT\Story\ZS\ZS_Smalltalk.d
+	func void ZS_Smalltalk_Loop(){
+		//Odstranena dvojita detekcia NPC skrz Wld_DetectNpc
+		//Jemne upraveny check na validne other NPC
+		//NULL nahradeny za other
+	};
+
+\CONTENT\AI\AI_Intern\B_Functions.d
+	//Opraveny standardny bug G1 - kde B_Say a B_SayOverlay sposobovali miznutie dialogov/prepnutie dialogu na blizko stojace NPC
+	func void B_Say(var C_Npc slf,var C_Npc oth,var string text){
+	};
+
+
+\CONTENT\Story\MISSIONS\DIA_EBR_108_Velaya.d
+	func void dia_velaya_gomezfinished_info(){
+		//Presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,Lebensamulett,1);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_GRD_255_Fletcher.d
+	func void dia_fletcher_result_info(){
+		//Presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,ItMiNugget,75);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_NOV_1302_Viran.d
+	func void DIA_Viran_Running_Info(){
+		//Presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,hero,ItMi_Plants_Swampherb_01,50);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_Org_862_Jacko.d
+	func void ORG_862_Jacko_GUARD_InfoWert(){
+		//Presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,ItMiNugget,95);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_org_864_esteban.d
+	func void dia_esteban_success_info(){
+		//Presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,estebans_bogen,1);
+	};
+
+\CONTENT\Story\MISSIONS\PC_Mage.d
+	//Vo funkcii nieje check na to, ci hrac skutocne ma item predtym, nez sa presuva Cronos_Brief
+	func int DIA_Milten_NochEinBrief_Condition(){
+	};
+	
+	B_GiveInvItems(other,self,Cronos_Brief,1);
+
+\CONTENT\Story\MISSIONS\DIA_VLK_573_Graham.d
+	func void DIA_Graham_SellMap_Pay(){
+		//Standardny G1 Bug - presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,ItWrOMMap,1);
+	};
+
+	func void func void DIA_Graham_SellMap_AufsMaul(){
+		//Standardny G1 Bug - presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,other,ItWrOMMap,1);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_XardasDemon.d
+	func void Info_XardasDemon_ICEHEART_Info(){
+		//ItAt_IceGolem_01 sa neodstranuje z inventara demona
+	};
+	
+	func void Info_XardasDemon_FIREHEART_Info(){
+		//ItAt_FireGolem_01 sa neodstranuje z inventara demona
+	};
+
+\CONTENT\Story\MISSIONS\DIA_STT_301_Ian.d
+	func void STT_301_IAN_GETLIST_Info(){
+		//Standardny G1 Bug - presuva sa item k hracovi ale nevytvara sa.
+		B_GiveInvItems(self,hero,TheList,1);
+	};
+	
+\CONTENT\Story\MISSIONS\DIA_GRD_219_Stone.d
+	func void GRD_219_Stone_BETTERARMOR_M(){
+		//Standardny G1 Bug - presuva sa zbroj k hracovi, ale nevytvara sa.
+		B_GiveInvItems(self,hero,grd_armor_m,1);
+	};
+	
+	func void GRD_219_Stone_BETTERARMOR_H(){
+		//Standardny G1 Bug - presuva sa zbroj k hracovi, ale nevytvara sa
+		B_GiveInvItems(self,hero,grd_armor_h,1);
+	};
+	
+\CONTENT\Story\MISSIONS\DIA_org_5060_bandit.d
+	func void Info_Grd_237_FirstWarn_Info(){
+		//Standardny G1 Bug - necheckuje sa ci hrac ma rudu
+		Info_AddChoice(Info_Grd_237_FirstWarn,"Jistì, tady je moje ruda!",Info_Grd_237_FirstWarn_Info_YES);
+	};
+
+	func void Info_Grd_237_FirstWarn_Info_YES(){
+		ore = Npc_HasItems(hero,ItMiNugget);
+		B_GiveInvItems(hero,self,ItMiNugget,ore);
+	};
+
+
+\CONTENT\Story\MISSIONS\DIA_org_5060_bandit.d
+	func void org_5060_bandit_beated_info(){
+		//Odstranuju sa itemy - necheckuje sa pocet kusov
+		Npc_RemoveInvItem(hero,ItWr_Fire_Letter_01);
+		Npc_RemoveInvItem(hero,ItWr_Fire_Letter_02);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_GRD_233_Bloodwyn.d
+	func void Info_Bloodwyn_Hello_NotNow(){
+		//Ruda bola presuvana bez toho aby sa kontroloval pocet kusov - hrac nemusi mat ani kus!
+		B_GiveInvItems(other,self,ItMiNugget,Npc_HasItems(other,ItMiNugget));
+	};
+
+\CONTENT\Story\MISSIONS\DIA_NOV_1304_Balor.d
+	func void dia_balor_gotweed_info(){
+		//Presuva sa ruda k hracovi - ale nieje tam prikaz na vygenerovanie rudy
+		B_GiveInvItems(self,other,ItMiNugget,10);
+	};
+	
+	func void DIA_Balor_FetchWeed_Info(){
+		//Standardny G1 bug - presuva sa trava z bazin hracovi - ale nevytvara sa v inventari, ak Balor nema travu - nic sa nepresunie
+		B_GiveInvItems(self,other,ItMi_Plants_Swampherb_01,50);
+	};
+
+
+\CONTENT\Story\MISSIONS\DIA_PC_Thief.d
+	func void info_diego_münzenabgeben_info(){
+		//Chybny cely presun minci, ziadne checky na pocty kusov pri presune, odstranuje sa z Diegovho inventara po 1 kuse
+		XP_STANDART = 1;
+		PLAYER_MUENZEN = Npc_HasItems(hero,ItMi_Stuff_OldCoin_01);
+		PLAYER_MUENZEN_2 = Npc_HasItems(hero,ItMi_Stuff_OldCoin_02);
+		XP_PLAYERMUENZEN = (PLAYER_MUENZEN + PLAYER_MUENZEN_2) * XP_STANDART;
+		B_GiveInvItems(other,self,ItMi_Stuff_OldCoin_01,Npc_HasItems(other,ItMi_Stuff_OldCoin_01));
+		B_GiveInvItems(other,self,ItMi_Stuff_OldCoin_02,Npc_HasItems(other,ItMi_Stuff_OldCoin_02));
+		Npc_RemoveInvItem(self,ItMi_Stuff_OldCoin_01);
+		Npc_RemoveInvItem(self,ItMi_Stuff_OldCoin_02);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_VLK_534_Buddler.d
+	func void dia_vlk_534_erz_info() {
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+
+\CONTENT\Story\MISSIONS\DIA_Stt_311_Fisk.d
+	func void dia_fingers_butch_info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+
+\CONTENT\Story\MISSIONS\DIA_STT_301_Ian.d
+	func void stt_301_ian_founddigger_info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+
+\CONTENT\Story\MISSIONS\DIA_ORG_855_Wolf.d
+	func void Info_Wolf_MCPLATESENOUGH_Info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75){
+		}
+		else if(zufallsbelohnung >= 50){
+		}
+		else if(zufallsbelohnung >= 25){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 25 tak hrac nedostane ziadnu odmenu
+	};
+
+	//Dialogova moznost hovori, ze potrebujeme 6 kozi a 5 zubov Bazinneho zraloka
+	Info_AddChoice(info_wolf_craft_which,"Zbroj z kùže Moèálového žraloka (6 kùží moèálového žraloka, 5 zubù moèálového žraloka, 2 drápy, 1700 ks rudy)",info_wolf_craft_which_shark);
+
+	func void info_wolf_craft_which_shark(){
+		//Podmienka potrebuje 4 koze a 3 zuby Bazinneho zraloka
+		if((Npc_HasItems(other,ItAt_Swampshark_01) >= 4) && (Npc_HasItems(other,ItAt_Claws_01) >= 2) && (Npc_HasItems(other,ItAt_Swampshark_02) >= 3) && (Npc_HasItems(hero,ItMiNugget) >= VALUE_NON_ARMOR_L)){
+
+			//A presuva sa 5 kozi a 5 zubov :)
+			B_GiveInvItems(other,self,ItAt_Swampshark_01,5);
+			B_GiveInvItems(other,self,ItAt_Claws_01,2);
+			B_GiveInvItems(other,self,ItAt_Swampshark_02,5);
+		};
+	};
+	
+	func void dia_wolf_sellfur_info(){
+		//Pri predavani kozusin a naslednej vymene za magicku rudu sa Wolfovi negeneruje magicka ruda - takze hrac pride naprazdno, ak uz Wolf nema dostatok rudy
+	};
+
+\CONTENT\Story\MISSIONS\DIA_ORG_818_Ratford.d
+	func void dia_ratford_map_info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+	
+	func void dia_ratford_map_info() {
+		//Ak ma hrac obidve mapy - itwrworldmap_mission + ItWrWorldmap tak kvoli poradiu podmienok sa quest 'vyfailuje'
+		if(Npc_HasItems(other,ItWrWorldmap) > 0){
+		}
+		else if(Npc_HasItems(other,itwrworldmap_mission) > 0){
+		};
+	};
+
+\CONTENT\Story\MISSIONS\DIA_Non_1500_Gilbert.d
+	func void dia_gilbert_finished_info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+
+\CONTENT\Story\MISSIONS\DIA_BAU_903_Rufus.d
+	func void dia_rufus_done_info(){
+		zufallsbelohnung = Hlp_Random(100);
+		if(zufallsbelohnung >= 75) {
+		}
+		else if(zufallsbelohnung >= 60)
+		}
+		else if(zufallsbelohnung >= 50)
+		}
+		else if(zufallsbelohnung >= 40)
+		}
+		else if(zufallsbelohnung >= 30)
+		}
+		else if(zufallsbelohnung >= 20){
+		}
+		else if(zufallsbelohnung >= 10){
+		};
+		//Ak padne random hodnota zufallsbelohnung medzi 0 - 10 tak hrac nedostane ziadnu odmenu
+	};
+
+
+\CONTENT\Story\MISSIONS\DIA_GRD_267_Gardist.d
+	//Chyba v dialogu:
+	func int grd_267_gardist_workingork_condition(){
+		//Fawkes: dialog dostupny len ak ma hrac >= 150 ks rudy
+		if(Npc_KnowsInfo(hero,grd_267_gardist_sittingork) && (ORE_VLK == LOG_RUNNING) && (Npc_HasItems(other,ItMiNugget) >= 150)){
+			return 1;
+		};
+	};
+
+	func void grd_267_gardist_workingork_info(){
+		//Blok dialogu dostupny len ak ma hrac <= 150 ks rudy (spolu s condition funkciou tu moze zapis == 150)
+		if(Npc_HasItems(other,ItMiNugget) <= 150){
+			//Presuva sa 150 ks rudy
+			B_GiveInvItems(other,self,ItMiNugget,150);
+
+		//Blok dialogu dostupny len ak ma hrac > 150 a <= 200 ks rudy
+		}else if(Npc_HasItems(other,ItMiNugget) <= 200){
+			//Problem: Presuva sa 200 kusov rudy, aj ked ma hrac napriklad iba 151 ks rudy, to nedava uplne zmysel
+			B_GiveInvItems(other,self,ItMiNugget,200);
+
+		//Blok dialogu dostupny len ak ma hrac >= 250 ks rudy
+		}else if(Npc_HasItems(other,ItMiNugget) >= 250){
+			//Presuva sa vsetko
+			B_GiveInvItems(other,self,ItMiNugget,Npc_HasItems(other,ItMiNugget));
+		};
+		
+		//Problem: Ak ma hrac > 200 < 250 ks rudy, tak pre takuto situaciu neexistuje ziadny dialog ...
+	};
+
+\CONTENT\Story\MISSIONS\DIA_NOV_1301_Caine.d
+
+	func void nov_1301_caine_traenke_crawlerelixier(){
+		//Hrac by sa mal naucit KNOWS_PSICRAWLER ale v skriptoch bolo KNOWS_DEXELIXIER
+		KNOWS_DEXELIXIER = TRUE;
+	};
+	
+\CONTENT\Story\B\Info_Vlk_4_EXIT.d
+	func void info_vlk_4_geschichte_info(){
+		//Dialog sa priraduje podla random hodnot zo 100 - ak padne hodnota medzi 75 - 100 tak sa ziadny dialog nespusti
+		geschichten = Hlp_Random(100);
+		
+		if(geschichten < 25){
+		}else if(geschichten < 50){
+		}else if(geschichten < 75){
+		};
+	};
+
+
+\CONTENT\_misk_\potionalchemy_s1.d
+	//Chyby pri vytvarani lektvarov:
+	
+	func void pc_heal3_info(){
+		//Vytvara sa potion ItFo_Potion_Health_02, mal by sa ItFo_Potion_Health_03
+		CreateInvItems(hero,ItFo_Potion_Health_02,1);
+	};
+
+	func void pc_mana3_info()
+	{
+		//Vytvara sa potion ItFo_Potion_Mana_02, mal by sa ItFo_Potion_Mana_03
+		CreateInvItems(hero,ItFo_Potion_Mana_02,1);
+	};
+
+\CONTENT\Story\MISSIONS\DIA_SLD_704_Blade.d
+	func void dia_blade_learnyes_axt() {
+		//Chybal printscreen pre Morning Star
+	};
+
+Misc:
+\CONTENT\Story\MISSIONS\DIA_TPL_1455_GorBoba.d
+
+	Toto nieje chyba, ale nieje to 'best practice':
+	
+	func void Info_TPL_1455_GorBoba1_Info(){
+		//Poznamka "Orktempel" nemal konstantu a namiesto toho bol string priamo vo funkcii - nahradil som konstantou
+		Log_CreateTopic("Orktempel",LOG_NOTE);
+		B_LogEntry("Orktempel","GorBoba hat sich mir in den Weg gestellt um micht auf zu halten. Ich habe noch von ihm erfahren, dass Kalom und seine Anhänger von dem Hohenpriester Macht verliehen bekommen haben, so dass sie nicht mehr mit menschlichen Waffen verletzt werden können.");
