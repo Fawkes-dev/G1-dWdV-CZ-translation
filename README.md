@@ -1,6 +1,6 @@
 # G1 Die Welt der Verurteilten CZ translation v0.2
 
-Mod Autor: [Issues](https://forum.worldofplayers.de/forum/members/67037-Issues)
+Mod Author: [Issues](https://forum.worldofplayers.de/forum/members/67037-Issues)
 
 WoG Forum: [Release-Gothic-Welt-der-Verurteilten-v1-03-6](https://forum.worldofplayers.de/forum/threads/1332744-Release-Gothic-Welt-der-Verurteilten-v1-03-6)
 
