@@ -1,0 +1,1182 @@
+instance Info_Xardas_EXIT(C_Info)
+{
+	npc = KDF_404_Xardas;
+	nr = 999;
+	condition = Info_Xardas_EXIT_Condition;
+	information = Info_Xardas_EXIT_Info;
+	important = 0;
+	permanent = 1;
+	description = DIALOG_ENDE;
+};
+
+func int Info_Xardas_EXIT_Condition()
+{
+	return 1;
+};
+
+func void Info_Xardas_EXIT_Info()
+{
+	AI_StopProcessInfos(self);
+};
+
+instance Info_Xardas_DISTURB(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_DISTURB_Condition;
+	information = Info_Xardas_DISTURB_Info;
+	important = 1;
+	permanent = 0;
+};
+
+func int Info_Xardas_DISTURB_Condition()
+{
+	if(!UrShak_SpokeOfUluMulu)
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_DISTURB_Info()
+{
+	B_WhirlAround(self,hero);
+	AI_Output(self,hero,"Info_Xardas_DISTURB_14_01");	//KDO SI DOVOLUJE MĚ RUŠIT PŘI STUDIÍCH?
+	AI_Output(hero,self,"Info_Xardas_DISTURB_15_02");	//Jmenuju se...
+	AI_Output(self,hero,"Info_Xardas_DISTURB_14_03");	//Nezajímá mě, jak se jmenuješ. Je to nedůležité.
+	AI_Output(self,hero,"Info_Xardas_DISTURB_14_04");	//Důležité je jen to, že jsi za ta léta první člověk, který rozřešil hádanku mých Golemů.
+};
+
+instance Info_Xardas_OTHERS(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_OTHERS_Condition;
+	information = Info_Xardas_OTHERS_Info;
+	important = 0;
+	permanent = 0;
+	description = "Byli tu ještě jiní návštěvníci?";
+};
+
+func int Info_Xardas_OTHERS_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DISTURB))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_OTHERS_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_OTHERS_15_01");	//Byli tu ještě jiní návštěvníci?
+	AI_Output(self,hero,"Info_Xardas_OTHERS_14_02");	//Ne moc, ale jakmile mě začali obtěžovat, nechal jsem je konfrontovat s jednou z mých nadpřirozených příšer.
+	AI_Output(hero,self,"Info_Xardas_OTHERS_15_03");	//Ty jsi nerad vyrušován, viď?
+};
+
+instance Info_Xardas_SATURAS(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_SATURAS_Condition;
+	information = Info_Xardas_SATURAS_Info;
+	important = 0;
+	permanent = 0;
+	description = "Poslal mě Saturas. Potřebujeme tvoji pomoc!";
+};
+
+func int Info_Xardas_SATURAS_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DISTURB))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_SATURAS_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_SATURAS_15_01");	//Poslal mě Saturas. Potřebujeme tvojí pomoc!
+	AI_Output(hero,self,"Info_Xardas_SATURAS_15_02");	//Mágové Vody se chystají použít svojí velkou rudnou haldu...
+	AI_Output(self,hero,"Info_Xardas_SATURAS_14_03");	//Rudná halda NENÍ správné řešení!
+	AI_Output(hero,self,"Info_Xardas_SATURAS_15_04");	//Není?
+	AI_Output(self,hero,"Info_Xardas_SATURAS_14_05");	//NE!
+};
+
+instance Info_Xardas_KDW(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_KDW_Condition;
+	information = Info_Xardas_KDW_Info;
+	important = 0;
+	permanent = 0;
+	description = "Všichni mágové Ohně jsou mrtví!";
+};
+
+func int Info_Xardas_KDW_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DISTURB))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_KDW_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_KDW_15_01");	//Všichni mágové Ohně jsou mrtví!
+	AI_Output(hero,self,"Info_Xardas_KDW_15_02");	//Gomez je povraždil.
+	AI_Output(self,hero,"Info_Xardas_KDW_14_03");	//To mě nepřekvapuje. Těm bláznivým barbarům na hradě, hlavně Gomezovi, nikdy není co věřit.
+	AI_Output(self,hero,"Info_Xardas_KDW_14_04");	//Corristo a další mágové si sami zvolili šibenici, když pomáhali Gomezovi převzít moc.
+};
+
+instance Info_Xardas_SLEEPER(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_SLEEPER_Condition;
+	information = Info_Xardas_SLEEPER_Info;
+	important = 0;
+	permanent = 0;
+	description = "O tom takzvaném 'Spáčovi' se říká, že je to zlý arcidémon.";
+};
+
+func int Info_Xardas_SLEEPER_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DISTURB))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_SLEEPER_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_SLEEPER_15_01");	//O tom takzvaném 'Spáčovi' se říká, že je to zlý arcidémon.
+	AI_Output(hero,self,"Info_Xardas_SLEEPER_15_02");	//Toho si vytvořilo Bratrstvo z bažin.
+	AI_Output(hero,self,"Info_Xardas_SLEEPER_15_03");	//Teď mágové Vody věří tomu, že jsou všichni v kolonii ve velkém nebezpečí.
+	AI_Output(self,hero,"Info_Xardas_SLEEPER_14_04");	//Je to větší nebezpečí, než si kdokoliv uvnitř Bariéry dokáže představit.
+};
+
+instance Info_Xardas_DANGER(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_DANGER_Condition;
+	information = Info_Xardas_DANGER_Info;
+	important = 0;
+	permanent = 0;
+	description = "Pokud exploze rudné haldy toto velké nebezpečí neodvrátí...";
+};
+
+func int Info_Xardas_DANGER_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_SLEEPER) && Npc_KnowsInfo(hero,Info_Xardas_SATURAS))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_DANGER_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_DANGER_15_01");	//Pokud exploze rudné haldy toto velké nebezpečí neodvrátí...
+	AI_Output(self,hero,"Info_Xardas_DANGER_14_02");	//...Zapomeň na rudnou haldu! Její síla Bariéru neotevře.
+	AI_Output(self,hero,"Info_Xardas_DANGER_14_03");	//Kdyby Corristo a Saturas neplýtvali v minulých letech časem na bláznivé a zbytečné záležitosti, pak by všichni věděli, co já vím.
+	AI_Output(hero,self,"Info_Xardas_DANGER_15_04");	//A co?
+	AI_Output(self,hero,"Info_Xardas_DANGER_14_05");	//Žádný z dvanácti mágů se od té doby nepřestal ptát, proč se jim vytvoření Bariéry vymklo z rukou a proč nabyla tak obrovských rozměrů.
+};
+
+instance Info_Xardas_BARRIER(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_BARRIER_Condition;
+	information = Info_Xardas_BARRIER_Info;
+	important = 0;
+	permanent = 0;
+	description = "Přišel jsi na to, proč se to stalo?";
+};
+
+func int Info_Xardas_BARRIER_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DANGER))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_BARRIER_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_BARRIER_15_01");	//Přišel jsi na to, proč se to stalo?
+	AI_Output(self,hero,"Info_Xardas_BARRIER_14_02");	//Dobrá, jedno je jisté: odpověď leží hluboko pod městem skřetů.
+	AI_Output(hero,self,"Info_Xardas_BARRIER_15_03");	//Pod městem skřetů?
+	AI_Output(self,hero,"Info_Xardas_BARRIER_14_04");	//Skřeti nejsou zvířata, jak si mnozí myslí. Jejich kultura je tak stará jako lidská.
+	AI_Output(self,hero,"Info_Xardas_BARRIER_14_05");	//Před několika stoletími vyvolalo pět skřetích šamanů velmi starého arcidémona, protože doufali, že dá jejich klanu sílu, se kterou by porazili své nepřátele.
+	AI_Output(hero,self,"Info_Xardas_BARRIER_15_06");	//Ten arcidémon, to byl Spáč?
+	AI_Output(self,hero,"Info_Xardas_BARRIER_14_07");	//Skřeti mu tohle jméno dali až mnohem později. Nemůžu ale říci, proč mu ho dali, ani proč se teď té nadpřirozené bytosti děsí!
+};
+
+instance Info_Xardas_EVENT(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_EVENT_Condition;
+	information = Info_Xardas_EVENT_Info;
+	important = 0;
+	permanent = 0;
+	description = "Proč ne?";
+};
+
+func int Info_Xardas_EVENT_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_BARRIER))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_EVENT_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_EVENT_15_01");	//Proč ne?
+	AI_Output(self,hero,"Info_Xardas_EVENT_14_02");	//Věřím, že ty bys mohl... NE, jsem si jist, ty budeš muset vykonat jiný úkol!
+	AI_Output(hero,self,"Info_Xardas_EVENT_15_03");	//Jaký?
+	AI_Output(self,hero,"Info_Xardas_EVENT_14_04");	//Pozorně poslouchej: Skřeti vyhostili z toho města jednoho šamana.
+};
+
+instance Info_Xardas_EVENTWHY(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_EVENTWHY_Condition;
+	information = Info_Xardas_EVENTWHY_Info;
+	important = 0;
+	permanent = 0;
+	description = "Proč ho vyhostili?";
+};
+
+func int Info_Xardas_EVENTWHY_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_EVENT))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_EVENTWHY_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_EVENTWHY_15_01");	//Proč ho vyhostili?
+	AI_Output(self,hero,"Info_Xardas_EVENTWHY_14_02");	//Umírající skřetí bojovník při výslechu jedním mým démonem nebyl schopen dlouho odpovídat na otázky.
+};
+
+instance Info_Xardas_EVENTHOW(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_EVENTHOW_Condition;
+	information = Info_Xardas_EVENTHOW_Info;
+	important = 0;
+	permanent = 0;
+	description = "Co má ten skřetí šaman společného s mým úkolem?";
+};
+
+func int Info_Xardas_EVENTHOW_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_EVENT))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_EVENTHOW_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_EVENTHOW_15_01");	//Co má ten skřetí šaman společného s mým úkolem?
+	AI_Output(self,hero,"Info_Xardas_EVENTHOW_14_02");	//Řekne ti zbytek toho příběhu o Spáčovi.
+	AI_Output(hero,self,"Info_Xardas_EVENTHOW_15_03");	//Nějaký skřetí šaman bude asi sotva ochotný se mnou mluvit!
+	AI_Output(self,hero,"Info_Xardas_EVENTHOW_14_04");	//Chceš, abych ti pomohl nebo ne?
+	AI_Output(hero,self,"Info_Xardas_EVENTHOW_15_05");	//Ano, chci, ale...
+	AI_Output(self,hero,"Info_Xardas_EVENTHOW_14_06");	//Pak už žádné otázky!
+	AI_Output(self,hero,"Info_Xardas_EVENTHOW_14_07");	//Najdi toho šamana. Není už dlouhou dobu se svými bratry ve skřetím městě zadobře, takže tě možná vyslechne ještě předtím, než tě promění v živou pochodeň!
+	AI_Output(hero,self,"Info_Xardas_EVENTHOW_15_08");	//Pěkná představa!
+};
+
+instance Info_Xardas_EVENTWHERE(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_EVENTWHERE_Condition;
+	information = Info_Xardas_EVENTWHERE_Info;
+	important = 0;
+	permanent = 0;
+	description = "Kde je ten vyhoštěný šaman?";
+};
+
+func int Info_Xardas_EVENTWHERE_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_EVENT))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_EVENTWHERE_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_EVENTWHERE_15_01");	//Kde je ten vyhoštěný šaman?
+	AI_Output(self,hero,"Info_Xardas_EVENTWHERE_14_02");	//Jdi na východ ke staré citadele. Nemůžeš ji minout, je na vrcholu hory, kterou uvidíš už z dálky.
+	AI_Output(hero,self,"Info_Xardas_EVENTWHERE_15_03");	//Jak se dostanu dovnitř?
+	AI_Output(self,hero,"Info_Xardas_EVENTWHERE_14_04");	//Říkají jí stará citadela, ale zbylo z ní sotva víc než základové zdi. Je to už po mnoho desetiletí zřícenina.
+};
+
+instance Info_Xardas_ACCEPT(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_ACCEPT_Condition;
+	information = Info_Xardas_ACCEPT_Info;
+	important = 0;
+	permanent = 0;
+	description = "Dostanu od toho šamana odpovědi!";
+};
+
+func int Info_Xardas_ACCEPT_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_EVENTWHY) && Npc_KnowsInfo(hero,Info_Xardas_EVENTHOW) && Npc_KnowsInfo(hero,Info_Xardas_EVENTWHERE))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_ACCEPT_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_ACCEPT_15_01");	//Dostanu od toho šamana odpovědi!
+	AI_Output(self,hero,"Info_Xardas_ACCEPT_14_02");	//Můj služebník ti už připravil teleportační runu na pentagram na podlaze.
+	AI_Output(self,hero,"Info_Xardas_ACCEPT_14_03");	//To ti usnadní pozdější návrat zpět.
+	B_Story_CordsPost();
+	B_Story_FindOrcShaman();
+	AI_StopProcessInfos(self);
+};
+
+var int xardas_trade;
+
+instance Kdf_404_Xardas_SELLMAGICSTUFF(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Kdf_404_Xardas_SELLMAGICSTUFF_Condition;
+	information = Kdf_404_Xardas_SELLMAGICSTUFF_Info;
+	important = 0;
+	permanent = 1;
+	trade = 1;
+	description = "Hledám magické vědění.";
+};
+
+func int Kdf_404_Xardas_SELLMAGICSTUFF_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_ACCEPT))
+	{
+		return TRUE;
+	};
+};
+
+func void Kdf_404_Xardas_SELLMAGICSTUFF_Info()
+{
+	AI_Output(other,self,"Kdf_404_Xardas_SELLMAGICSTUFF_Info_15_01");	//Hledám magické vědění.
+	if(XARDAS_TRADE == FALSE)
+	{
+		Log_CreateTopic(GE_TraderOW,LOG_NOTE);
+		B_LogEntry(GE_TraderOW,"Xardas, Vyvolávač démonů obchoduje s magickými SVITKY, RUNAMI a LEKTVARY.");
+		XARDAS_TRADE = TRUE;
+	};
+};
+
+instance KDF_404_XARDAS_TEACH(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = kdf_404_xardas_teach_condition;
+	information = kdf_404_xardas_teach_info;
+	important = 0;
+	permanent = 0;
+	description = "Můžeš mě učit?";
+};
+
+func int kdf_404_xardas_teach_condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_ACCEPT))
+	{
+		return TRUE;
+	};
+};
+
+func void kdf_404_xardas_teach_info()
+{
+	AI_Output(other,self,"Kdf_404_Xardas_TEACH_Info_15_01");	//Můžeš mě učit?
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_01");	//Můžeš mě učit?
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_02");	//Základy už jsi se naučil v jednom z táborů.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_03");	//Vybral jsi si buďto magii ohně, vody, anebo tu Spáčovu.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_04");	//Nezáleží na tom jakou cestu jsi si vybral.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_05");	//Každá z nich vede k jedinému cíli. K šestému kruhu magie.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_06");	//Ten obsahuje znalosti temné magie, magie Beliara.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_07");	//S šestým kruhem získáš obrovskou moc.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_08");	//Pokud ovládáš magii ohně anebo vody, s šestým kruhem ovládneš i magii démonů.
+	AI_Output(self,other,"Kdf_404_Xardas_TEACH_Info_15_09");	//Pokud ovládáš Spáčovu magii, k magii démonů tě nepustím.
+};
+
+instance Info_Xardas_RETURN(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_RETURN_Condition;
+	information = Info_Xardas_RETURN_Info;
+	important = 0;
+	permanent = 0;
+	description = "Mám odpovědi od skřetího šamana!";
+};
+
+func int Info_Xardas_RETURN_Condition()
+{
+	if(UrShak_SpokeOfUluMulu && !EnteredTemple)
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_RETURN_Info()
+{
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_01");	//Mám odpovědi od skřetího šamana!
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_02");	//Výborně, tak povídej!
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_03");	//Pět skřetích šamanů vyvolalo Spáče, kterého vytvořili v podzemním chrámu, do kterého je vstup v skřetím městě.
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_04");	//To je pravda!
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_05");	//Protože byl nevděčný, zaklel jejich srdce a odsoudil je k věčnému bytí jako nesmrtelné stvůry!
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_06");	//Velmi dobře, velmi dobře!
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_07");	//Skřeti zavřeli chrám a začali přinášet oběti, aby toho démona usmířili!
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_08");	//Našel jsi cestu ke vchodu do toho chrámu?
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_09");	//Ano, je jeden skřet, který...
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_10");	//Bez těch podrobností! Jdi do podzemního chrámu! Tam najdeš způsob jak zničit Bariéru!
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_11");	//Nerozumím!
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_12");	//Nechtěl jsi snad po mně, abych ti pomáhal s odstraněním Bariéry?
+	AI_Output(hero,self,"Info_Xardas_RETURN_15_13");	//To je pravda, ale...
+	AI_Output(self,hero,"Info_Xardas_RETURN_14_14");	//PAK TEDY BĚŽ. Už se promrhalo spoustu času! Jdi do podzemního chrámu a najdi tam odpověď!
+	B_Story_ReturnedFromUrShak();
+};
+
+instance Info_Xardas_FOUNDTEMPLE(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_FOUNDTEMPLE_Condition;
+	information = Info_Xardas_FOUNDTEMPLE_Info;
+	important = 0;
+	permanent = 0;
+	description = "Našel jsem cestu do podzemního chrámu!";
+};
+
+func int Info_Xardas_FOUNDTEMPLE_Condition()
+{
+	if(EnteredTemple)
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_FOUNDTEMPLE_Info()
+{
+	AI_Output(other,self,"Info_Xardas_FOUNDTEMPLE_15_01");	//Našel jsem cestu do podzemního chrámu!
+	AI_Output(self,other,"Info_Xardas_FOUNDTEMPLE_14_02");	//NAŠEL... To je pozoruhodné!
+	AI_Output(self,other,"Info_Xardas_FOUNDTEMPLE_14_03");	//Stal ses velmi mocný! Silnější než kdokoliv jiný uvnitř Bariéry.
+	AI_Output(self,other,"Info_Xardas_FOUNDTEMPLE_14_04");	//Možná jsi doopravdy ten muž ze skřetího proroctví!
+};
+
+instance Info_Xardas_PROPHECY(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_PROPHECY_Condition;
+	information = Info_Xardas_PROPHECY_Info;
+	important = 0;
+	permanent = 0;
+	description = "Proroctví? Jaké proroctví?";
+};
+
+func int Info_Xardas_PROPHECY_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_FOUNDTEMPLE))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_PROPHECY_Info()
+{
+	AI_Output(other,self,"Info_Xardas_PROPHECY_15_01");	//Proroctví? Jaké proroctví?
+	AI_Output(self,other,"Info_Xardas_PROPHECY_14_02");	//Prastaré skřetí dokumenty napsané krátce před uzavřením podzemního chrámu se zmiňovaly o 'Svatém nepříteli'.
+	AI_Output(other,self,"Info_Xardas_PROPHECY_15_03");	//O Svatém nepříteli?
+	AI_Output(self,other,"Info_Xardas_PROPHECY_14_04");	//Někdo, kdo provždy odstraní SPÁČE z našeho světa!
+	AI_Output(other,self,"Info_Xardas_PROPHECY_15_05");	//A já mám být tím, kdo byl v tom starém proroctví zmíněn??? Musíš se mýlit, určitě!
+	AI_Output(self,other,"Info_Xardas_PROPHECY_14_06");	//Možná... Možná ne!
+};
+
+instance Info_Xardas_LOADSWORD(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_LOADSWORD_Condition;
+	information = Info_Xardas_LOADSWORD_Info;
+	important = 0;
+	permanent = 0;
+	description = "Našel jsem zvláštní meč.";
+};
+
+func int Info_Xardas_LOADSWORD_Condition()
+{
+	if(Npc_HasItems(hero,Mythrilklinge))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_LOADSWORD_Info()
+{
+	AI_Output(other,self,"Info_Xardas_LOADSWORD_15_01");	//Našel jsem zvláštní meč.
+	AI_Output(self,other,"Info_Xardas_LOADSWORD_14_02");	//Ukaž mi ho.
+	CreateInvItem(self,Mythrilklinge01);
+	AI_EquipBestMeleeWeapon(self);
+	AI_ReadyMeleeWeapon(self);
+	AI_PlayAni(self,"T_1HSINSPECT");
+	AI_RemoveWeapon(self);
+	AI_UnequipWeapons(self);
+	AI_Output(self,other,"Info_Xardas_LOADSWORD_14_03");	//To je zajímavé... Je na něm napsáno 'URIZIEL'.
+	AI_Output(self,other,"Info_Xardas_LOADSWORD_14_04");	//Slyšel jsem o tom meči. Je to zbraň z dávných dob, kdy lidské plemeno bylo ještě mladé.
+	AI_Output(self,other,"Info_Xardas_LOADSWORD_14_05");	//Ta zbraň je ukována z neznámého materiálu. A nikde není napsáno, kdo ji vytvořil!
+	AI_Output(self,other,"Info_Xardas_LOADSWORD_14_06");	//Jeho ostří je obdařeno neuvěřitelnou mocí, ale nevidím žádnou kouzelnou auru!
+	Npc_RemoveInvItem(hero,Mythrilklinge);
+	CreateInvItem(hero,Mythrilklinge01);
+};
+
+instance Info_Xardas_LOADSWORD01(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_LOADSWORD01_Condition;
+	information = Info_Xardas_LOADSWORD01_Info;
+	important = 0;
+	permanent = 0;
+	description = "URIZIEL je obdařen neuvěřitelnou mocí?";
+};
+
+func int Info_Xardas_LOADSWORD01_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_LOADSWORD))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_LOADSWORD01_Info()
+{
+	Npc_RemoveInvItem(self,Mythrilklinge01);
+	AI_Output(other,self,"Info_Xardas_LOADSWORD01_15_01");	//URIZIEL je obdařen neuvěřitelnou mocí?
+	AI_Output(self,other,"Info_Xardas_LOADSWORD01_14_02");	//Stojí psáno, že majitel té zbraně dokázal protnout i to nejsilnější brnění a překonat i to nejmocnější ochranné kouzlo.
+	AI_Output(other,self,"Info_Xardas_LOADSWORD01_15_03");	//Jak se mohla skřetům tahle mocná zbraň dostat do rukou?
+	AI_Output(self,other,"Info_Xardas_LOADSWORD01_14_04");	//Tvrdí se, že ji skřeti vzali jednomu mocnému válečníkovi. Nevěděli, jak ji používat, ale ukryli ji!
+	AI_Output(other,self,"Info_Xardas_LOADSWORD01_15_05");	//Neukryli ji ale dobře!
+};
+
+instance Info_Xardas_LOADSWORD02(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_LOADSWORD02_Condition;
+	information = Info_Xardas_LOADSWORD02_Info;
+	important = 0;
+	permanent = 0;
+	description = "Je možné obnovit bývalou moc této zbraně?";
+};
+
+func int Info_Xardas_LOADSWORD02_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_LOADSWORD01))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_LOADSWORD02_Info()
+{
+	AI_Output(other,self,"Info_Xardas_LOADSWORD02_15_01");	//Je možné obnovit bývalou moc této zbraně?
+	AI_Output(self,other,"Info_Xardas_LOADSWORD02_14_02");	//Potřeboval bys k tomu velmi silný zdroj magické síly.
+	AI_Output(other,self,"Info_Xardas_LOADSWORD02_15_03");	//Myslíš natolik silný, aby prorazil magickou Bariéru?
+	AI_Output(self,other,"Info_Xardas_LOADSWORD02_14_04");	//Asi tak silný...
+	AI_Output(self,other,"Info_Xardas_LOADSWORD02_14_05");	//A kromě toho bys potřeboval zvláštní magickou formuli, která by tu sílu přetransformovala.
+	AI_Output(self,other,"Info_Xardas_LOADSWORD02_14_06");	//Dej mi trochu času a já tu magickou formuli vytvořím.
+	B_Story_ShowedUrizielToXardas();
+};
+
+instance Info_Xardas_BETTERARMOR(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_BETTERARMOR_Condition;
+	information = Info_Xardas_BETTERARMOR_Info;
+	important = 0;
+	permanent = 0;
+	description = "Já se zatím podívám po nějaké lepší zbroji!";
+};
+
+func int Info_Xardas_BETTERARMOR_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_LOADSWORD02))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_BETTERARMOR_Info()
+{
+	var C_Item armor;
+	var int armorInstance;
+	AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_01");	//Já se zatím podívám po nějaké lepší zbroji!
+	armor = Npc_GetEquippedArmor(hero);
+	armorInstance = Hlp_GetInstanceID(armor);
+	if(armorInstance == crw_armor_h)
+	{
+		AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_02");	//Tahle zalátaná protičerví zbroj byla v podzemním chrámu mockrát proražena!
+	}
+	else if((armorInstance == kdw_armor_h) || (armorInstance == kdw_armor_l))
+	{
+		AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_03");	//Tyhle modré hadry by mě v podzemním chrámu sotva ochránily!
+	}
+	else
+	{
+		AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_04");	//Ten nemrtvý zanechal v mé zbroji pořádné díry!
+	};
+	AI_Output(self,other,"Info_Xardas_BETTERARMOR_14_05");	//Měl bys jít do mojí staré věže.
+	AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_06");	//Tvojí staré věže?
+	AI_Output(self,other,"Info_Xardas_BETTERARMOR_14_07");	//Potopila se v jednom z východních jezer při jednom zemětřesení. Vrcholy jsou nad povrchem stále viditelné.
+	AI_Output(self,other,"Info_Xardas_BETTERARMOR_14_08");	//Zůstalo v ní několik artefaktů. Nikdy jsem se nesnažil je dostat zpátky.
+	AI_Output(other,self,"Info_Xardas_BETTERARMOR_15_09");	//Jak se tam dostanu?
+	AI_Output(self,other,"Info_Xardas_BETTERARMOR_14_10");	//Od toho zemětřesení jsem tam nebyl, takže si k ní budeš muset najít cestu sám.
+	AI_Output(self,other,"Info_Xardas_BETTERARMOR_14_11");	//Tady je klíč. Je od truhly, ve které jsem obvykle ukládal obzvlášť vzácné artefakty.
+	B_Story_ExploreSunkenTower();
+};
+
+instance Info_Xardas_OREARMOR(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_OREARMOR_Condition;
+	information = Info_Xardas_OREARMOR_Info;
+	important = 1;
+	permanent = 0;
+};
+
+func int Info_Xardas_OREARMOR_Condition()
+{
+	if(Npc_HasItems(hero,ore_armor_m) || Npc_HasItems(hero,ore_armor_h))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_OREARMOR_Info()
+{
+	var C_Item armor;
+	var int armorInstance;
+	armor = Npc_GetEquippedArmor(hero);
+	armorInstance = Hlp_GetInstanceID(armor);
+	if((armorInstance == ore_armor_m) || (armorInstance == ore_armor_h))
+	{
+		AI_Output(self,other,"Info_Xardas_OREARMOR_14_01");	//Aha! Vidím, že nosíš rudnou zbroj.
+	}
+	else
+	{
+		AI_Output(self,other,"Info_Xardas_OREARMOR_14_02");	//Jak vidím, našel jsi rudnou zbroj.
+	};
+	AI_Output(other,self,"Info_Xardas_OREARMOR_15_03");	//Našel jsem ji v jedné z těch truhel v potopené věži.
+	AI_Output(self,other,"Info_Xardas_OREARMOR_14_04");	//Patřila generálovi, který v bitvě proti skřetům používal URIZIEL.
+	AI_Output(other,self,"Info_Xardas_OREARMOR_15_05");	//Doufám, že mi přinese víc štěstí než jemu!
+};
+
+instance Info_Xardas_FORMULA(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_FORMULA_Condition;
+	information = Info_Xardas_FORMULA_Info;
+	important = 0;
+	permanent = 0;
+	description = "Máš hotovou tu formuli na obnovení síly URIZIELA?";
+};
+
+func int Info_Xardas_FORMULA_Condition()
+{
+	if(Npc_HasItems(hero,ore_armor_m) || Npc_HasItems(hero,ore_armor_h) || Npc_HasItems(hero,ItArRuneTeleport1))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_FORMULA_Info()
+{
+	AI_Output(other,self,"Info_Xardas_FORMULA_15_01");	//Máš hotovou tu formuli na obnovení síly URIZIELA?
+	AI_Output(self,other,"Info_Xardas_FORMULA_14_02");	//Je hotová. Nebudeš ji moci ale použít sám.
+	AI_Output(other,self,"Info_Xardas_FORMULA_15_03");	//Proč ne?
+	AI_Output(self,other,"Info_Xardas_FORMULA_14_04");	//Musí být vyslovena nějakým mágem, zatímco ty se budeš dotýkat mečem zdroje síly.
+	AI_Output(other,self,"Info_Xardas_FORMULA_15_05");	//Pak se budu muset porozhlédnout po nějaké pomoci!
+	AI_Output(self,other,"Info_Xardas_FORMULA_14_06");	//Vyslov tu formuli a obnov dřívější sílu meče. Budeš ji potřebovat!
+	B_Story_LoadSword();
+};
+
+instance Info_Xardas_ALTRUNE(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_ALTRUNE_Condition;
+	information = Info_Xardas_ALTRUNE_Info;
+	important = 0;
+	permanent = 0;
+	description = "Protože jsem mág, bude pro mě těžké vládnout URIZIELEM!";
+};
+
+func int Info_Xardas_ALTRUNE_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_FORMULA) && ((Npc_GetTrueGuild(hero) == GIL_KDW) || (Npc_GetTrueGuild(hero) == GIL_DMB) || (Npc_GetTrueGuild(hero) == GIL_GUR) || (oldHeroGuild == GIL_KDF)))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_ALTRUNE_Info()
+{
+	AI_Output(other,self,"Info_Xardas_ALTRUNE_15_01");	//Protože jsem mág, bude pro mě těžké vládnout URIZIELEM!
+	AI_Output(self,other,"Info_Xardas_ALTRUNE_14_02");	//Je tu jedno řešení...
+	AI_Output(self,other,"Info_Xardas_ALTRUNE_14_03");	//Nejdřív ale musíš obnovit dřívější sílu ostří! Pak se vrať!
+};
+
+instance Info_Xardas_SWORDLOADED(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_SWORDLOADED_Condition;
+	information = Info_Xardas_SWORDLOADED_Info;
+	important = 0;
+	permanent = 0;
+	description = "Obnovil jsem sílu URIZIELA!";
+};
+
+func int Info_Xardas_SWORDLOADED_Condition()
+{
+	if(Npc_HasItems(hero,Mythrilklinge02))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_SWORDLOADED_Info()
+{
+	AI_Output(other,self,"Info_Xardas_SWORDLOADED_15_01");	//Obnovil jsem sílu URIZIELA!
+	AI_Output(self,other,"Info_Xardas_SWORDLOADED_14_02");	//To je neuvěřitelné, meč znovu získal svou původní sílu. Teď máš opravdu mocnou zbraň!
+	Wld_InsertItem(ItArScrollTeleport4,"OW_ORC_SHAMAN_ROOM2");
+};
+
+instance Info_Xardas_MAKERUNE(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_MAKERUNE_Condition;
+	information = Info_Xardas_MAKERUNE_Info;
+	important = 0;
+	permanent = 0;
+	description = "Říkal jsi, že existuje nějaký způsob, jak bych mohl URIZIEL ovládat, přestože jsem mág?";
+};
+
+func int Info_Xardas_MAKERUNE_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_ALTRUNE) && Npc_KnowsInfo(hero,Info_Xardas_SWORDLOADED))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_MAKERUNE_Info()
+{
+	AI_Output(other,self,"Info_Xardas_MAKERUNE_15_01");	//Říkal jsi, že existuje nějaký způsob, jak bych mohl URIZIEL ovládat, přestože jsem mág?
+	AI_Output(self,other,"Info_Xardas_MAKERUNE_14_02");	//Podívej se na URIZIEL zblízka. Všimneš si modrého drahokamu v čepeli.
+	AI_Output(self,other,"Info_Xardas_MAKERUNE_14_03");	//V něm je obsažena magická síla ostří.
+	AI_Output(self,other,"Info_Xardas_MAKERUNE_14_04");	//Když ten drahokam odstraním, budu moci vytvořit kouzelnou runu, která bude obsahovat atributy samotného URIZIELA.
+	AI_Output(other,self,"Info_Xardas_MAKERUNE_15_05");	//Magická runa vytvořená z URIZIELA?
+	AI_Output(self,other,"Info_Xardas_MAKERUNE_14_06");	//V boji bude ta runa stejně silná jako meč!
+	AI_Output(self,other,"Info_Xardas_MAKERUNE_14_07");	//Nezapomeň ale, že jedině některý mág Šestého kruhu je schopen ovládat takhle mocnou runu!
+};
+
+instance Info_Xardas_MAKERUNEDOIT(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_MAKERUNEDOIT_Condition;
+	information = Info_Xardas_MAKERUNEDOIT_Info;
+	important = 0;
+	permanent = 1;
+	description = "Odstraň z URIZIELA ten drahokam!";
+};
+
+func int Info_Xardas_MAKERUNEDOIT_Condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_MAKERUNE) && Npc_HasItems(hero,Mythrilklinge02))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_MAKERUNEDOIT_Info()
+{
+	AI_Output(other,self,"Info_Xardas_MAKERUNEDOIT_15_01");	//Odstraň z URIZIELA ten drahokam!
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6)
+	{
+		AI_Output(self,other,"Info_Xardas_MAKERUNEDOIT_14_02");	//Nejsi ale ještě pod velením Šestého magického kruhu!
+	};
+	AI_Output(self,other,"Info_Xardas_MAKERUNEDOIT_14_03");	//Tohle rozhodnutí je konečné. Opravdu chceš, abych ten drahokam odstranil?
+	Info_ClearChoices(Info_Xardas_MAKERUNEDOIT);
+	Info_AddChoice(Info_Xardas_MAKERUNEDOIT,"ANO, udělej to!",Info_Xardas_MAKERUNE_YES);
+	Info_AddChoice(Info_Xardas_MAKERUNEDOIT,"NE, nedělej to!",Info_Xardas_MAKERUNE_NO);
+};
+
+func void Info_Xardas_MAKERUNE_YES()
+{
+	Info_ClearChoices(Info_Xardas_MAKERUNEDOIT);
+	AI_Output(other,self,"Info_Xardas_MAKERUNEDOIT_15_04");	//ANO, udělej to!
+	AI_Output(self,other,"Info_Xardas_MAKERUNEDOIT_14_05");	//Jestli to opravdu chceš... Tady je prázdný meč a runa!
+	Npc_RemoveInvItem(hero,Mythrilklinge02);
+	CreateInvItems(self,UrizielRune,2);
+	B_GiveInvItems(self,hero,UrizielRune,2);
+	Npc_RemoveInvItem(hero,UrizielRune);
+	CreateInvItem(hero,Mythrilklinge03);
+	B_LogEntry(CH5_Uriziel,"Xardas odstranil z URIZIELU kouzelný kámen. Síla této čepele spočívá v kouzelné runě nevídané moci.");
+	Log_SetTopicStatus(CH5_Uriziel,LOG_SUCCESS);
+};
+
+func void Info_Xardas_MAKERUNE_NO()
+{
+	Info_ClearChoices(Info_Xardas_MAKERUNEDOIT);
+	AI_Output(other,self,"Info_Xardas_MAKERUNEDOIT_15_06");	//NE, nedělej to!
+	AI_Output(self,other,"Info_Xardas_MAKERUNEDOIT_14_07");	//Jak si přeješ. Ostří si zachová magickou moc!
+};
+
+instance Info_Xardas_LOADSWORD09(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = Info_Xardas_LOADSWORD09_Condition;
+	information = Info_Xardas_LOADSWORD09_Info;
+	important = 0;
+	permanent = 1;
+	description = B_BuildLearnString(NAME_LearnMage_6,LPCOST_TALENT_MAGE_6,0);
+};
+
+func int Info_Xardas_LOADSWORD09_Condition()
+{
+	if((EnteredTemple && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (Npc_GetTrueGuild(hero) == GIL_KDW)) || ((oldHeroGuild == GIL_KDF) && EnteredTemple && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)))
+	{
+		return TRUE;
+	};
+};
+
+func void Info_Xardas_LOADSWORD09_Info()
+{
+	AI_Output(other,self,"Info_Xardas_LOADSWORD09_15_01");	//Můžeš mě učit?
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	{
+		if(B_GiveSkill(other,NPC_TALENT_MAGE,6,LPCOST_TALENT_MAGE_6))
+		{
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_02");	//Přivedu tě k Šestému kruhu magie.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_03");	//Uvědom si, že jen ti nejmocnější mágové se mohou přidat k Šestému kruhu. Je vyhrazen pro ty, jejichž životy jsou znameními.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_04");	//Tvé znamení je sjednocení živlů.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_05");	//Šestý kruh ti umožní využít jakoukoliv runu.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_06");	//A nezapomeň: neuplatňuj moc, ale služ jí.
+			CreateInvItem(hero,dmb_armor_m);
+			AI_EquipBestArmor(hero);
+			CreateInvItem(self,ItAmArrow);
+			B_GiveInvItems(self,hero,ItAmArrow,1);
+			Npc_RemoveInvItem(hero,ItAmArrow);
+			Mdl_ApplyOverlayMds(hero,"Humans_Mage.mds");
+			hero.guild = GIL_DMB;
+			Npc_SetTrueGuild(hero,GIL_DMB);
+			Info_Xardas_LOADSWORD09.permanent = 0;
+			AI_StopProcessInfos(self);
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_07");	//Ještě ne. Už jsi zběhlý, ale nemáš ještě dost vědomostí. Ať tě nejdříve cvičí Saturas, já ti dám pokyny později.
+		AI_StopProcessInfos(self);
+	};
+};
+
+var int learned_fivecircle;
+
+instance INFO_XARDAS_LOADSWORDGUR(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = info_xardas_loadswordgur_condition;
+	information = info_xardas_loadswordgur_info;
+	important = 0;
+	permanent = 1;
+	description = "Můžeš mě učit?";
+};
+
+func int info_xardas_loadswordgur_condition()
+{
+	if((EnteredTemple && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (Npc_GetTrueGuild(hero) == GIL_GUR)) || (EnteredTemple && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (oldHeroGuild == GIL_KDF)) || (EnteredTemple && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (oldHeroGuild == GIL_KDW)))
+	{
+		return TRUE;
+	};
+};
+
+func void info_xardas_loadswordgur_info()
+{
+	AI_Output(other,self,"Info_Xardas_LOADSWORDGUR_15_01");	//Můžeš mě učit?
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
+	{
+		if(B_GiveSkill(other,NPC_TALENT_MAGE,5,LPCOST_TALENT_MAGE_5))
+		{
+			AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_02");	//Přijmu tě do páteho magického kruhu.
+			AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_03");	//Ohnivá bouře, Ledová vlna a Zničení nemrtvého jsou opravdu mocnými kouzly, které teď dokážeš používat.
+			AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_04");	//Nejsilnějším kouzlem pátého kruhu je ale Vlna smrti. Pokud bys získal tuhle runu, tak věz, že má nebezpečnou moc.
+			AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_06");	//Spoznej své limity, pak spoznáš svou opravdovou sílu.
+			LEARNED_FIVECIRCLE = TRUE;
+			info_xardas_loadswordgur.permanent = 0;
+			AI_StopProcessInfos(self);
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_07");	//Ještě předtím se musíš ale naučit magii čtvrtého kruhu. Jedině potom tě budu učit.
+		AI_StopProcessInfos(self);
+	};
+};
+
+instance INFO_XARDAS_LOADSWORDGUR2(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = info_xardas_loadswordgur2_condition;
+	information = info_xardas_loadswordgur2_info;
+	important = 0;
+	permanent = 1;
+	description = "Můžeš mě učit?";
+};
+
+func int info_xardas_loadswordgur2_condition()
+{
+	if(EnteredTemple && (Npc_GetTrueGuild(hero) == GIL_GUR) && Npc_KnowsInfo(hero,kdf_404_xardas_teach) && (LEARNED_FIVECIRCLE == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void info_xardas_loadswordgur2_info()
+{
+	AI_Output(other,self,"Info_Xardas_LOADSWORD09_15_01");	//Můžeš mě učit?
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	{
+		if(B_GiveSkill(other,NPC_TALENT_MAGE,6,LPCOST_TALENT_MAGE_6))
+		{
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_02");	//Přivedu tě k Šestému kruhu magie.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_03");	//Uvědom si, že jen ti nejmocnější mágové se mohou přidat k Šestému kruhu. Je vyhrazen pro ty, jejichž životy jsou znameními.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_04");	//Tvé znamení je sjednocení živlů.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_05");	//Šestý kruh ti umožní využít jakoukoliv runu.
+			AI_Output(self,other,"Info_Xardas_LOADSWORD09_14_06");	//A nezapomeň: neuplatňuj moc, ale služ jí.
+			info_xardas_loadswordgur2.permanent = 0;
+			AI_StopProcessInfos(self);
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"Info_Xardas_LOADSWORDGUR_14_87");	//Nauč se magii pátého kruhu. Teprve pak tě budu učit.
+		AI_StopProcessInfos(self);
+	};
+};
+
+instance INFO_XARDAS_ARMOR(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = info_xardas_armor_condition;
+	information = info_xardas_armor_info;
+	important = 0;
+	permanent = 0;
+	description = "Můžeš mi vylepšit moji roucho?";
+};
+
+func int info_xardas_armor_condition()
+{
+	if(Npc_KnowsInfo(hero,Info_Xardas_DISTURB))
+	{
+		return TRUE;
+	};
+};
+
+func void info_xardas_armor_info()
+{
+	AI_Output(other,self,"Info_Xardas_ARMOR_15_01");	//Můžeš mi vylepšit moji roucho?
+	AI_Output(self,other,"Info_Xardas_ARMOR_14_02");	//Ano, můžu to zkusit. Musíš mi však přinést správné roucho.
+	AI_Output(self,other,"Info_Xardas_ARMOR_14_03");	//Umím pracovat jenom s rouchami Mágů.
+	AI_Output(self,other,"Info_Xardas_ARMOR_14_04");	//Patří mezi ně roucha Mágů vody, ohně, Spáče a démonické magie.
+	AI_Output(self,other,"Info_Xardas_ARMOR_14_05");	//Přines mi roucho Mágů ohně, vody, Spáče anebo démonické magie.
+	AI_Output(self,other,"Info_Xardas_ARMOR_14_06");	//Pokud máš dost rudy, můžu ti tyto roucha vylepšit.
+};
+
+instance INFO_XARDAS_CRAFT_WHICH(C_Info)
+{
+	npc = KDF_404_Xardas;
+	nr = 9;
+	condition = info_xardas_craft_which_condition;
+	information = info_xardas_craft_which_info;
+	important = 0;
+	permanent = 1;
+	description = "Vylepšete moje roucho.";
+};
+
+func int info_xardas_craft_which_condition()
+{
+	if(Npc_KnowsInfo(hero,info_xardas_armor))
+	{
+		return TRUE;
+	};
+};
+
+func void info_xardas_craft_which_info()
+{
+	AI_Output(hero,self,"Info_Xardas_CRAFT_WHICH_15_01");	//Vylepši moje roucho.
+	AI_Output(self,hero,"Info_Xardas_CRAFT_WHICH_09_02");	//Které roucho chceš vylepšit?
+	Info_ClearChoices(info_xardas_craft_which);
+	Info_AddChoice(info_xardas_craft_which,DIALOG_BACK,info_xardas_craft_which_back);
+	if(Npc_HasItems(other,dmb_armor_m) >= 1)
+	{
+		Info_AddChoice(info_xardas_craft_which,"Vylepšit Roucho Temných umění (1300 ks rudy)",info_xardas_craft_which_dmb);
+	};
+	if(Npc_HasItems(other,gur_armor_m) >= 1)
+	{
+		Info_AddChoice(info_xardas_craft_which,"Vylepšit Roucho Guru (1300 ks rudy)",info_xardas_craft_which_gur);
+	};
+	if(Npc_HasItems(other,kdf_armor_h) >= 1)
+	{
+		Info_AddChoice(info_xardas_craft_which,"Vylepšit Vznešené Roucho Ohně (1300 ks rudy)",info_xardas_craft_which_kdf);
+	};
+	if(Npc_HasItems(other,kdw_armor_h) >= 1)
+	{
+		Info_AddChoice(info_xardas_craft_which,"Vylepšit Vznešené Roucho Vody (1300 ks rudy)",info_xardas_craft_which_kdw);
+	};
+};
+
+func void info_xardas_craft_which_back()
+{
+	Info_ClearChoices(info_xardas_craft_which);
+};
+
+func void info_xardas_craft_which_dmb()
+{
+	AI_Output(other,self,",	Info_Xardas_CRAFT_WHICH_Xardas_55_01");	//Chci abys vylepšil moje roucho Temných umění.
+	if((Npc_HasItems(other,dmb_armor_m) >= 1) && (Npc_HasItems(hero,ItMiNugget) >= 1300))
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_Xardas_55_02");	//Dej mi to roucho. Chvíli počkej, posílím ho.
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_Xardas_55_04");	//Chvíli počkej, dokud to nedokončím.
+		AI_UnequipArmor(hero);
+		B_GiveInvItems(hero,self,ItMiNugget,1300);
+		Npc_RemoveInvItem(hero,dmb_armor_m);
+		CreateInvItem(hero,dmb_armor_m_upgrade);
+		AI_EquipBestArmor(hero);
+		CreateInvItem(self,ItAmArrow);
+		B_GiveInvItems(self,hero,ItAmArrow,1);
+		Npc_RemoveInvItem(hero,ItAmArrow);
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_Xardas_55_05");	//Tady je tvoje vylepšené roucho Temných umění.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_Xardas_15_02");	//Potřebuju více rudy abych mohl vylepšit tohle roucho.
+		AI_StopProcessInfos(self);
+		Info_ClearChoices(info_xardas_craft_which);
+	};
+};
+
+func void info_xardas_craft_which_gur()
+{
+	AI_Output(other,self,",	Info_Xardas_CRAFT_GUR_Xardas_55_01");	//Chci abys vylepšil moje roucho Guru.
+	if((Npc_HasItems(other,gur_armor_m) >= 1) && (Npc_HasItems(hero,ItMiNugget) >= 1300))
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_GUR_Xardas_55_02");	//Dej mi to roucho. Chvíli počkej, posílím ho.
+		AI_Output(self,other,",	Info_Xardas_CRAFT_GUR_Xardas_55_04");	//Chvíli počkej, dokud to nedokončím.
+		AI_UnequipArmor(hero);
+		B_GiveInvItems(hero,self,gur_armor_m,1);
+		B_GiveInvItems(hero,self,ItMiNugget,1300);
+		Npc_RemoveInvItem(self,dmb_armor_m);
+		CreateInvItem(self,gur_armor_m_upgrade);
+		B_GiveInvItems(self,hero,gur_armor_m_upgrade,1);
+		AI_EquipBestArmor(hero);
+		AI_Output(self,other,",	Info_Xardas_CRAFT_GUR_Xardas_55_05");	//Tady je tvoje vylepšené roucho Guru.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_GUR_15_02");	//Potřebuju více rudy abych mohl vylepšit tohle roucho.
+		AI_StopProcessInfos(self);
+		Info_ClearChoices(info_xardas_craft_which);
+	};
+};
+
+func void info_xardas_craft_which_kdf()
+{
+	AI_Output(other,self,",	Info_Xardas_CRAFT_KDF_Xardas_55_01");	//Chci abys vylepšil moje Vznešené roucho Ohně.
+	if((Npc_HasItems(other,kdf_armor_h) >= 1) && (Npc_HasItems(hero,ItMiNugget) >= 1300))
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDF_Xardas_55_02");	//Dej mi to roucho. Chvíli počkej, posílím ho.
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDF_Xardas_55_04");	//Chvíli počkej, dokud to nedokončím.
+		AI_UnequipArmor(hero);
+		B_GiveInvItems(hero,self,kdf_armor_h,1);
+		B_GiveInvItems(hero,self,ItMiNugget,1300);
+		Npc_RemoveInvItem(self,kdf_armor_h);
+		CreateInvItem(self,kdf_armor_h_upgrade);
+		B_GiveInvItems(self,hero,kdf_armor_h_upgrade,1);
+		AI_EquipBestArmor(hero);
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDF_Xardas_55_05");	//Tady je tvoje vylepšené Vznešené roucho Ohně.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_KDF_15_02");	//Chci abys vylepšil moje Vznešené roucho Ohně.
+		AI_StopProcessInfos(self);
+		Info_ClearChoices(info_xardas_craft_which);
+	};
+};
+
+func void info_xardas_craft_which_kdw()
+{
+	AI_Output(other,self,",	Info_Xardas_CRAFT_KDW_Xardas_55_01");	//Chci abys vylepšil moje roucho Vody.
+	if((Npc_HasItems(other,kdw_armor_h) >= 1) && (Npc_HasItems(hero,ItMiNugget) >= 1300))
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDW_Xardas_55_02");	//Dej mi to roucho. Chvíli počkej, posílím ho.
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDW_Xardas_55_04");	//Chvíli počkej, dokud to nedokončím.
+		AI_UnequipArmor(hero);
+		B_GiveInvItems(hero,self,kdw_armor_h,1);
+		B_GiveInvItems(hero,self,ItMiNugget,1300);
+		Npc_RemoveInvItem(self,kdw_armor_h);
+		CreateInvItem(self,kdw_armor_h_upgrade);
+		B_GiveInvItems(self,hero,kdw_armor_h_upgrade,1);
+		AI_EquipBestArmor(hero);
+		AI_Output(self,other,",	Info_Xardas_CRAFT_KDW_Xardas_55_05");	//Tady je tvoje vylepšené roucho Vody.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,",	Info_Xardas_CRAFT_WHICH_KDW_15_02");	//Potřebuju více rudy abych mohl vylepšit tohle roucho.
+		AI_StopProcessInfos(self);
+		Info_ClearChoices(info_xardas_craft_which);
+	};
+};
+
+instance INFO_XARDAS_LEAVETOWER(C_Info)
+{
+	npc = KDF_404_Xardas;
+	condition = info_xardas_leavetower_condition;
+	information = info_xardas_leavetower_info;
+	important = 0;
+	permanent = 1;
+	description = "Jak se vrátím dolů?";
+};
+
+func int info_xardas_leavetower_condition()
+{
+	return TRUE;
+};
+
+func void info_xardas_leavetower_info()
+{
+	AI_Output(hero,self,"Info_Xardas_LeaveTower_15_01");	//Jak se vrátím dolů?
+	AI_Output(self,hero,"Info_Xardas_LeaveTower_14_02");	//Stejným způsobem jakým jsi sem přišel. Zavři oči!
+	Info_ClearChoices(info_xardas_leavetower);
+	Info_AddChoice(info_xardas_leavetower,"Jsem připraven. (teleportovat ke vchodu)",info_xardas_leavetower_yes);
+	Info_AddChoice(info_xardas_leavetower,"Počkej, rozmyslel jsem si to.",info_xardas_leavetower_no);
+};
+
+func void info_xardas_leavetower_yes()
+{
+	Info_ClearChoices(info_xardas_leavetower);
+	AI_Output(hero,self,"Info_Xardas_LeaveTower_15_03");	//Jsem připraven.
+	AI_StopProcessInfos(self);
+	AI_Teleport(hero,"DT_E1_06");
+	Wld_PlayEffect("SPELLFX_TELEPORT",hero,hero,0,0,0,FALSE);
+};
+
+func void info_xardas_leavetower_no()
+{
+	Info_ClearChoices(info_xardas_leavetower);
+	AI_Output(hero,self,"Info_Xardas_LeaveTower_15_04");	//Počkej, rozmyslel jsem si to.
+	AI_Output(self,hero,"Info_Xardas_LeaveTower_14_05");	//Jen do toho, plýtvej mým časem.
+};
+

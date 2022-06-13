@@ -1,0 +1,31 @@
+func void ZS_PracticeSword()
+{
+	PrintDebugNpc(PD_TA_FRAME,"ZS_PracticeSword");
+	B_SetPerception(self);
+	AI_SetWalkMode(self,NPC_WALK);
+	if(!Hlp_StrCmp(self.wp,Npc_GetNearestWP(self)))
+	{
+		AI_GotoWP(self,self.wp);
+	};
+	AI_DrawWeapon(self);
+};
+
+func void ZS_PracticeSword_Loop()
+{
+	PrintDebugNpc(PD_TA_LOOP,"ZS_PracticeSword_Loop");
+	if(!Npc_HasReadiedMeleeWeapon(self))
+	{
+		AI_ReadyMeleeWeapon(self);
+	};
+	AI_PlayAni(self,"T_1HSFREE");
+	AI_GotoWP(self,self.wp);
+	AI_AlignToWP(self);
+};
+
+func void ZS_PracticeSword_End()
+{
+	PrintDebugNpc(PD_TA_FRAME,"ZS_PracticeSword_End");
+	B_FullStop(self);
+	B_RemoveWeapon(self);
+};
+

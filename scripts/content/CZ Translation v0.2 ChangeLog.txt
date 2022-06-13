@@ -1,0 +1,45 @@
+CZ translation changeLog v0.2
+2020-12-13
+
+Oprava cestiny:
+
+\CONTENT\Story\MISSIONS\DIA_GUR_1203_BaalTondral.d
+
+	Upraveny Tondraalov dialog z:
+		DIA_BaalTondral_MuteExit.description = "Nichts sagen";
+	na:
+		DIA_BaalTondral_MuteExit.description = "Nic neøíkej. (KONEC)";
+
+\CONTENT\Story\CHAPTERS\B_Kapitelwechsel.d
+
+	Prelozene nazvy kapitol
+
+\CONTENT\Story\Events\Sleepabit.d
+
+	Prelozene moznosti pre spanok
+
+\CONTENT\Story\Text.d
+
+	Upravene polozky v Statistikach:
+
+		const string TXT_TALENTS[12], Regenerace zmenena na Alchýmie a Mistr ohnì na Kováøství
+		{
+			"",
+			"Jednoruèní meè",
+			"Obouruèní meè",
+			"Luk",
+			"Samostøíl",
+			"Otevírání zámkù",
+			"Vybírání kapes",
+			"Magie",
+			"Plížení",
+			"Alchýmie",	//Regenerace
+			"Kováøství",	//Mistr ohnì
+			"Akrobacie"
+		};
+
+Pridane animacie z povodneho modu (vyzera to, ze chybaju v 2.0, tak pre 'kompatibilitu' pre Robar VI, ktory experimentuje s 2.0):
+
+	_WORK\DATA\ANIMS\_COMPILED\HUM_TPLM_WHITEBODY_ARMOR.MDM
+	_WORK\DATA\ANIMS\_COMPILED\HUM_TPLM_BLACKBODY_ARMOR.MDM
+	_WORK\DATA\ANIMS\_COMPILED\HUM_TPLM_LATINOBODY_ARMOR.MDM
